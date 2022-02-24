@@ -42,7 +42,7 @@ public void setDiem(long diem) {
 @Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return  ten +" " +" " + tuoi + " "+ diem  ;
+		return  ten+" "+" "+ tuoi+" "+diem  ;
 	}
 
 
@@ -84,6 +84,15 @@ public String getNameCheckDiem(String maxOrMin) {
 	}
 	return name;
 	
+}
+public float getDiemTB() {
+	float diemTb = 0f;
+	float sum = 0f;
+	for(int i = 0 ; i < listdiem.size();i++) {
+		sum = sum + listdiem.get(i);
+	}
+	diemTb = sum / listdiem.size();
+	return diemTb;
 }
 
 }
