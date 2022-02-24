@@ -25,7 +25,7 @@ public class Generics <K,V>{
 			object.remove(key);
 			object.put(key, value);
 		}else {
-		   System.out.println("Dont Key is object");
+		   System.out.println("Dont key" + key+ " is object");
 		}
 	}
 	public void add(K key, V value) { 	
@@ -33,7 +33,7 @@ public class Generics <K,V>{
 			object.remove(key);
 			object.put(key, value);
 		}else {
-			System.out.println("key already exists");
+			System.out.println("key "+ key +" already exists");
 		}
 	}
 	

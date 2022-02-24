@@ -1,16 +1,25 @@
 package javaTest.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hocsinh {
  private String ten;
  private int tuoi;
  private float diem;
+ static List<Float> listdiem = new ArrayList<Float>();
+ public List<Hocsinh> listHs = new ArrayList<Hocsinh>();
  public Hocsinh(String ten 
 		 , int tuoi 
 		 , float diem) {
 	 this.ten = ten;
 	 this.diem = diem;
 	 this.tuoi = tuoi;
+	 listdiem.add(this.diem);
  }
+public Hocsinh() {
+	// TODO Auto-generated constructor stub
+}
 public String getTen() {
 	return ten;
 }
@@ -35,5 +44,46 @@ public void setDiem(long diem) {
 		// TODO Auto-generated method stub
 		return  ten +" " +" " + tuoi + " "+ diem  ;
 	}
+
+
+public void addHocsinh(String ten1 
+		 , int tuoi1 
+		 , float diem1) {
+	
+	listHs.add(new Hocsinh(ten1, tuoi1, diem1));
+}
+
+public float checkDiem(String maxOrMin) {
+	float check = listdiem.get(0);
+	
+	for (int i = 1; i < listdiem.size(); i++) {
+        // nếu kết quả của phép so sánh này lớn hơn 0
+        // tức biến max nhỏ hơn phần tử tại vị trí thứ i trong ArrayList
+        // thì gán max = phần tử tại vị trí i
+        // và đó chính là phần tử lớn nhất
+		if(maxOrMin.equalsIgnoreCase("MAX")) {
+			if (listdiem.get(i).compareTo(check) > 0) {
+				check = listdiem.get(i);
+	        }
+		}else if(maxOrMin.equalsIgnoreCase("MIN")) {
+        	if (listdiem.get(i).compareTo(check) < 0) {
+        		check = listdiem.get(i);
+            }
+		}
+        
+    }
+	return check;
+}
+
+public String getNameCheckDiem(String maxOrMin) {
+	String name = "";
+	for(int i = 0 ; i< listHs.size(); i++) {
+		if(listHs.get(i).getDiem() == checkDiem(maxOrMin)) {
+			name = name + listHs.get(i).getTen() + " ";
+		}
+	}
+	return name;
+	
+}
 
 }
