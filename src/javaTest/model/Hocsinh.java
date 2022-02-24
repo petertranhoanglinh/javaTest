@@ -3,6 +3,8 @@ package javaTest.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javaTest.service.Caculator;
+
 public class Hocsinh {
  private String ten;
  private int tuoi;
@@ -53,46 +55,16 @@ public void addHocsinh(String ten1
 	listHs.add(new Hocsinh(ten1, tuoi1, diem1));
 }
 
-public float checkDiem(String maxOrMin) {
-	float check = listdiem.get(0);
-	
-	for (int i = 1; i < listdiem.size(); i++) {
-        // nếu kết quả của phép so sánh này lớn hơn 0
-        // tức biến max nhỏ hơn phần tử tại vị trí thứ i trong ArrayList
-        // thì gán max = phần tử tại vị trí i
-        // và đó chính là phần tử lớn nhất
-		if(maxOrMin.equalsIgnoreCase("MAX")) {
-			if (listdiem.get(i).compareTo(check) > 0) {
-				check = listdiem.get(i);
-	        }
-		}else if(maxOrMin.equalsIgnoreCase("MIN")) {
-        	if (listdiem.get(i).compareTo(check) < 0) {
-        		check = listdiem.get(i);
-            }
-		}
-        
-    }
-	return check;
-}
-
-public String getNameCheckDiem(String maxOrMin) {
+public String getNameCheckDiem(String maxOrMin ) {
 	String name = "";
 	for(int i = 0 ; i< listHs.size(); i++) {
-		if(listHs.get(i).getDiem() == checkDiem(maxOrMin)) {
+		if(listHs.get(i).getDiem() == Caculator.checkDiem(maxOrMin,listdiem)) {
 			name = name + listHs.get(i).getTen() + " ";
 		}
 	}
 	return name;
 	
 }
-public float getDiemTB() {
-	float diemTb = 0f;
-	float sum = 0f;
-	for(int i = 0 ; i < listdiem.size();i++) {
-		sum = sum + listdiem.get(i);
-	}
-	diemTb = sum / listdiem.size();
-	return diemTb;
-}
+
 
 }
